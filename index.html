@@ -1,0 +1,234 @@
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Access Token Generator for Mastodon API</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <meta property="fb:app_id" content="1783939875255777" />
+    <meta property="og:url" content="https://takahashim.github.io/mastodon-access-token/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Access Token Generator for Mastodon API" />
+    <meta property="og:description" content="simple web application to getting access token for Mastodon API easily" />
+    <meta property="og:image" content="https://raw.githubusercontent.com/takahashim/mastodon-access-token/master/mastodon_small.jpg" />
+  </head>
+  <body>
+    <section class="hero is-primary">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title is-1">Access Token Generator for Mastodon API</h1>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+
+        <div class="columns">
+          <div class="column is-5">
+          <h2 class="title is-2">Form</h2>
+          <form method="post" action="#" id="sbmt">
+            <div class="field">
+              <label class="label" for="mastodon_url">Mastodon URL (https://mstdn.jp , https://pawoo.net , ...)</label>
+              <p class="control has-icon has-icons-left">
+                <input class="input is-primary" type="text" id="mastodon_url" value="https://mstdn.jp" required>
+                <span class="icon is-small is-left">
+                  <i class="fa fa-chain"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <label class="label">Client Name</label>
+              <p class="control has-icon has-icons-left">
+                <input class="input is-primary" type="text" id="client_name" value="sample-client" required>
+                <span class="icon is-small is-left">
+                  <i class="fa fa-paper-plane"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <label class="label">Web site</label>
+              <p class="control has-icon has-icons-left">
+                <input class="input is-primary" type="text" id="website" placeholder="https://example.jp">
+                <span class="icon is-small is-left">
+                  <i class="fa fa-chain"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <label class="label">Scopes</label>
+              <p class="control">
+                <span class="select">
+                  <select name="scopes" id="scopes">
+                    <option>read</option>
+                    <option>write</option>
+                    <option>follow</option>
+                    <option>read write</option>
+                    <option>read follow</option>
+                    <option>write follow</option>
+                    <option>read write follow</option>
+                  </select>
+                </span>
+              </p>
+            </div>
+
+            <div class="field">
+              <p class="control">
+                <button class="button is-primary" type="submit" id="btn" name="btn">Publish access_token<button>
+
+                <button class="button is-primary is-outlined" type="button" id="btn_clr" name="btn_clr">clear tokens</button>
+              </p>
+            </div>
+
+          </form>
+          </div>
+
+
+          <div class="column">
+            <h2 class="title is-2">Result</h2>
+
+            <article class="message is-info">
+              <div class="message-header">
+                <p>access_token</p>
+              </div>
+              <div class="message-body">
+                <p><span id="access_token"></span></p>
+              </div>
+            </article>
+
+            <article class="message is-warning">
+              <div class="message-header">
+                <p>client_id</p>
+              </div>
+              <div class="message-body">
+                <p><span id="client_id"></span></p>
+              </div>
+            </article>
+
+            <article class="message is-warning">
+              <div class="message-header">
+                <p>client_secret</p>
+              </div>
+              <div class="message-body">
+                <p><span id="client_secret"></span></p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="content">
+          <p><a href="https://github.com/takahashim/mastodon-access-token/blob/master/README.md">(In Japanese)</a></p>
+          <h2 class="title is-2">About This Site</h2>
+          <p>When you want to use Mastodon API, you need access_token for your application.  Using this site, you can get new access_token of your Mastodon site.</p>
+          <p>You can see all applications you use in Authorized Application of Settings.</p>
+          <h2 class="title is-2">About Security</h2>
+          <p>
+            This page uses your <b>client_id, client_secret and access_token</b>, but the site is pure JavaScript SPA site; <b>no server-side applications, no external scripts, no tracking your activities</b>.
+          </p>
+          <p>
+            If you can't trust this site, you can download this page onto your machine and execute it anywhere.
+            This page uses <a href="http://vanilla-js.com/">Vanilla JS</a>, so you can easily confirm what it does.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <p>
+          Share: <a href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Ftakahashim.github.io%2Fmastodon-access-token%2F&text=Access%20Token%20Generator%20for%20Mastodon%20API&url=https%3A%2F%2Ftakahashim.github.io%2Fmastodon-access-token%2F"><span class="icon"><i class="fa fa-twitter"></i></span></a>
+          <a href="https://www.facebook.com/dialog/share?app_id=1783939875255777&display=popup&href=https%3A%2F%2Ftakahashim.github.io%2Fmastodon-access-token%2F"><span class="icon"><i class="fa fa-facebook"></i></span></a>
+        </p>
+        <p>
+          by <a href="https://mstdn.jp/@takahashim">@takahashim</a>
+        </p>
+        <p>
+          Source code:
+          <span class="icon">
+            <i class="fa fa-github"></i>
+          </span>
+          <a href="https://github.com/takahashim/mastodon-access-token">https://github.com/takahashim/mastodon-access-token</a>
+        </p>
+      </div>
+    </footer>
+    <script>
+  function elem(el) {
+    return document.getElementById(el);
+  }
+  function makePostData(args) {
+    var data = [];
+    Object.keys(args).forEach(function(key) {
+      data.push(encodeURIComponent(key) + '=' + encodeURIComponent(args[key]));
+    });
+    return data.join('&').replace(/%20/g, '+');
+  }
+  function post(url, args, done) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        var data = xhr.response;
+        done(data);
+      }
+    }
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
+    xhr.responseType = "json";
+    var postData = makePostData(args);
+    xhr.send(postData);
+  }
+
+  /* main */
+  var redirect_uri = "https://takahashim.github.io/mastodon-access-token/";
+  var client_id = localStorage.getItem("MASTODON_CLIENT_ID");
+  var client_secret = localStorage.getItem("MASTODON_CLIENT_SECRET");
+
+  if (window.location.href.indexOf("?code=") !== -1 && client_id != "" && client_secret != "") {
+    var code = window.location.href.replace(window.location.origin+window.location.pathname+"?code=", "");
+    var url2 = elem("mastodon_url").value+"/oauth/token";
+    elem("client_id").textContent = client_id;
+    elem("client_secret").textContent = client_secret;
+    var args2 = {client_id: client_id,
+                 client_secret: client_secret,
+                 redirect_uri: redirect_uri,
+                 grant_type: "authorization_code",
+                 code: code};
+    post(url2, args2, function(data) {
+      elem('access_token').textContent = data.access_token;
+    })
+  } else {
+    localStorage.setItem("MASTODON_CLIENT_ID", "");
+    localStorage.setItem("MASTODON_CLIENT_SECRET", "");
+  }
+
+  elem("sbmt").addEventListener("submit", function(event) {
+    event.preventDefault();
+    var url = elem("mastodon_url").value+"/api/v1/apps";
+    var s = elem("scopes");
+    var scopes = s.options[s.selectedIndex].value;
+    var args = {client_name: elem("client_name").value,
+                redirect_uris: redirect_uri,
+                website: elem("website").value,
+                scopes: scopes};
+    post(url ,args, function(data) {
+      localStorage.setItem("MASTODON_CLIENT_ID", data.client_id);
+      localStorage.setItem("MASTODON_CLIENT_SECRET", data.client_secret);
+      var redirectLink = elem("mastodon_url").value+"/oauth/authorize?client_id="+data.client_id+"&redirect_uri="+redirect_uri+"&response_type=code&scope=" + scopes;
+      window.location.href = redirectLink;
+    });
+  });
+
+  elem("btn_clr").addEventListener("click", function(event) {
+    elem('access_token').textContent = "";
+    elem('client_id').textContent = "";
+    elem('client_secret').textContent = "";
+    localStorage.setItem("MASTODON_CLIENT_ID", "");
+    localStorage.setItem("MASTODON_CLIENT_SECRET", "");
+  });
+    </script>
+  </body>
+</html>
