@@ -184,12 +184,13 @@
 
   /* main */
   var redirect_uri = "https://takahashim.github.io/mastodon-access-token/";
+  var mastodon_url = localStorage.getItem("MASTODON_URL");
   var client_id = localStorage.getItem("MASTODON_CLIENT_ID");
   var client_secret = localStorage.getItem("MASTODON_CLIENT_SECRET");
 
-  if (window.location.href.indexOf("?code=") !== -1 && client_id != "" && client_secret != "") {
+  if (window.location.href.indexOf("?code=") !== -1 && mastodon_url != "" && client_id != "" && client_secret != "") {
     var code = window.location.href.replace(window.location.origin+window.location.pathname+"?code=", "");
-    var url2 = elem("mastodon_url").value+"/oauth/token";
+    var url2 = mastodon_url+"/oauth/token";
     elem("client_id").textContent = client_id;
     elem("client_secret").textContent = client_secret;
     var args2 = {client_id: client_id,
@@ -201,6 +202,7 @@
       elem('access_token').textContent = data.access_token;
     })
   } else {
+    localStorage.setItem("MASTODON_URL", "");
     localStorage.setItem("MASTODON_CLIENT_ID", "");
     localStorage.setItem("MASTODON_CLIENT_SECRET", "");
   }
@@ -215,6 +217,7 @@
                 website: elem("website").value,
                 scopes: scopes};
     post(url ,args, function(data) {
+      localStorage.setItem("MASTODON_URL", elem("mastodon_url").value);
       localStorage.setItem("MASTODON_CLIENT_ID", data.client_id);
       localStorage.setItem("MASTODON_CLIENT_SECRET", data.client_secret);
       var redirectLink = elem("mastodon_url").value+"/oauth/authorize?client_id="+data.client_id+"&redirect_uri="+redirect_uri+"&response_type=code&scope=" + scopes;
@@ -226,6 +229,7 @@
     elem('access_token').textContent = "";
     elem('client_id').textContent = "";
     elem('client_secret').textContent = "";
+    localStorage.setItem("MASTODON_URL", "");
     localStorage.setItem("MASTODON_CLIENT_ID", "");
     localStorage.setItem("MASTODON_CLIENT_SECRET", "");
   });
