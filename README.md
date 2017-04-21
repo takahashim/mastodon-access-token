@@ -18,7 +18,7 @@ Mastodon APIを叩くにはaccess_tokenが必要ですが、現状Mastodonの設
 jQuery等を使った方がコードは簡潔になりそうですが、透明性を優先しました（そのためGoogle Analyticsとかも入れてないのでアクセス数もよく分からず……。）
 
 
-なおCSSには<a href="http://bulma.io/">Bulma</a>と<a href="http://fontawesome.io/">Font Awesome</a>を使っています（publicなCDN経由なので変なものは仕込めません）。BulmaはJavaScript不要で使える軽量CSSフレームワークで便利です。
+なおCSSには[Bulma](http://bulma.io/)と[Font Awesome](http://fontawesome.io/)を使っています（publicなCDN経由なので変なものは仕込めません）。BulmaはJavaScript不要で使える軽量CSSフレームワークで便利です。
 
 ## 作者 (Author)
 
