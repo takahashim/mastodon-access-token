@@ -98,19 +98,19 @@
 
             <article class="message is-warning">
               <div class="message-header">
-                <p>client_id</p>
+                <p>client_id &nbsp;<button id="btn_client_id" type="button" class="button is-small is-inverted">show</button></p>
               </div>
               <div class="message-body">
-                <p><span id="client_id"></span></p>
+                <p><span id="client_id" style="visibility:hidden;"></span></p>
               </div>
             </article>
 
             <article class="message is-warning">
               <div class="message-header">
-                <p>client_secret</p>
+                <p>client_secret &nbsp;<button id="btn_client_secret" type="button" class="button is-small is-inverted">show</button></p>
               </div>
               <div class="message-body">
-                <p><span id="client_secret"></span></p>
+                <p><span id="client_secret" style="visibility:hidden;"></span></p>
               </div>
             </article>
 
@@ -191,6 +191,7 @@
   if (window.location.href.indexOf("?code=") !== -1 && mastodon_url != "" && client_id != "" && client_secret != "") {
     var code = window.location.href.replace(window.location.origin+window.location.pathname+"?code=", "");
     var url2 = mastodon_url+"/oauth/token";
+    elem("mastodon_url").value = mastodon_url;
     elem("client_id").textContent = client_id;
     elem("client_secret").textContent = client_secret;
     var args2 = {client_id: client_id,
@@ -232,6 +233,13 @@
     localStorage.setItem("MASTODON_URL", "");
     localStorage.setItem("MASTODON_CLIENT_ID", "");
     localStorage.setItem("MASTODON_CLIENT_SECRET", "");
+  });
+
+  elem("btn_client_secret").addEventListener("click", function(event) {
+    elem("client_secret").style.visibility = "visible";
+  });
+  elem("btn_client_id").addEventListener("click", function(event) {
+    elem("client_id").style.visibility = "visible";
   });
     </script>
   </body>
